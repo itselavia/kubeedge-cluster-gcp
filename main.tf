@@ -1,5 +1,5 @@
 provider "google" {
-  credentials = file("~/Downloads/kube-edge-demo-186a8609c6e1.json")
+  credentials = file(var.credentials_file_location)
   project     = var.project_name
   region      = var.region
   zone        = var.zone

@@ -21,3 +21,7 @@ variable "k8s_worker_node_count" {
 variable "edge_node_count" {
   
 }
+
+variable "credentials_file_location" {
+  
+}
