@@ -14,7 +14,7 @@ data "template_file" "edgecore_init" {
   template = "${file("${path.module}/scripts/edgecore_init.sh")}"
   vars = {
     config_bucket_url = var.config_bucket
-    cloudcore_ip = google_compute_instance.kubeedge_cloudcore.network_interface.0.access_config.0.nat_ip
+    cloudcore_ip      = google_compute_instance.kubeedge_cloudcore.network_interface.0.access_config.0.nat_ip
   }
 }
 
@@ -51,7 +51,7 @@ resource "google_compute_instance" "kubeedge_cloudcore" {
 }
 
 resource "google_compute_instance" "kubeedge_edgecore" {
-  count = var.edge_node_count
+  count        = var.edge_node_count
   name         = "edgecore-${count.index}"
   machine_type = "e2-small"
   zone         = var.zone

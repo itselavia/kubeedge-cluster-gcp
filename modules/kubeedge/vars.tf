@@ -11,7 +11,7 @@ variable "zone" {
 }
 
 variable "vpc_name" {
-type = string
+  type = string
 }
 
 variable "edge_node_count" {

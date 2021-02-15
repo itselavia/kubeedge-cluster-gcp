@@ -17,13 +17,14 @@ gsutil cp ${config_bucket_url}/config /root/.kube/config
 
 # Download keadm
 KEADM_VERSION=keadm-v1.4.0-linux-amd64
-wget https://github.com/kubeedge/kubeedge/releases/download/v1.4.0/$KEADM_VERSION.tar.gz
+wget --quiet https://github.com/kubeedge/kubeedge/releases/download/v1.4.0/$KEADM_VERSION.tar.gz
 tar -xvzf $KEADM_VERSION.tar.gz
 mv $KEADM_VERSION/keadm/keadm /usr/local/bin/
 rm -rf $KEADM_VERSION $KEADM_VERSION.tar.gz
 
 # Initialize kubeedge cloudcore
-PUBLIC_IP=$(curl -H "Metadata-Flavor: Google" http://metadata.google.internal/computeMetadata/v1/instance/network-interfaces/0/access-configs/0/external-ip)
+PUBLIC_IP=$(curl --silent -H "Metadata-Flavor: Google" http://metadata.google.internal/computeMetadata/v1/instance/network-interfaces/0/access-configs/0/external-ip)
+
 keadm init --advertise-address="$PUBLIC_IP"
 
 sleep 10
